@@ -1,38 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Project Details | Priyanka Gunjal</title>
+    <link rel="stylesheet" href="style.css" />
     <style>
-        body {
-            background-color: #0d0d0d;
-            color: #f0ede6;
-            font-family: "Inter", sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        h1 {
-            font-family: "DM Serif Display", serif;
-            font-size: 3rem;
-            opacity: 0.8;
-        }
-        a {
-            color: #a29bfe;
-            text-decoration: none;
-            margin-top: 2rem;
-            display: block;
-        }
+      body {
+        overflow-y: auto !important;
+        height: auto !important;
+        width: auto !important;
+      }
+      .subpage-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        min-height: 100vh;
+      }
+      .back-nav {
+        margin-bottom: 3rem;
+        display: inline-block;
+        text-decoration: none;
+        color: var(--text-color);
+        opacity: 0.6;
+        transition: opacity 0.3s ease;
+        font-family: var(--font-sans);
+        font-weight: 500;
+      }
+      .back-nav:hover { opacity: 1; }
+
+      .project-hero {
+        margin-bottom: 4rem;
+        animation: fadeIn 0.8s ease forwards;
+      }
+      .project-category {
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 0.9rem;
+        color: #a29bfe;
+        margin-bottom: 1rem;
+        display: block;
+      }
+      .project-title {
+        font-family: var(--font-serif);
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        line-height: 1.1;
+        margin-bottom: 2rem;
+      }
+      .project-main-image {
+        width: 100%;
+        height: 60vh;
+        border-radius: 24px;
+        overflow: hidden;
+        margin-bottom: 4rem;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+      }
+      .project-main-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .project-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 4rem;
+      }
+      .project-meta h3 {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        opacity: 0.4;
+        margin-bottom: 0.5rem;
+      }
+      .project-meta p { margin-bottom: 2rem; font-weight: 500; }
+
+      .project-description {
+        font-size: 1.25rem;
+        line-height: 1.6;
+        opacity: 0.8;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      @media (max-width: 768px) {
+        .project-grid { grid-template-columns: 1fr; gap: 2rem; }
+        .project-main-image { height: 40vh; }
+      }
     </style>
-</head>
-<body>
-    <div style="text-align: center;">
-        <h1>Project Details Page</h1>
-        <p>This is a placeholder for the individual project information.</p>
-        <a href="index.html">&larr; Back to Portfolio</a>
+  </head>
+  <body>
+    <div class="subpage-container">
+      <a href="index.html" class="back-nav">&larr; Back to Portfolio</a>
+      
+      <div id="project-content">
+        <!-- Dynamic Content Injected Here -->
+      </div>
     </div>
-</body>
+
+    <script>
+      const projectData = {
+        brownthought: {
+          title: "Brownthought Academy",
+          category: "Education & Marketing",
+          image: "brownthought_project_1777626039771.png",
+          description: "A comprehensive marketing bootcamp designed for future changemakers. <br><br><b>The Challenge:</b> How do you create an educational platform that feels both professional and inspiring? We needed to break the mold of traditional LMS designs.<br><br><b>The Solution:</b> We implemented a high-energy, starry-themed digital presence that balances academic rigor with creative inspiration. Using GSAP and custom shaders, we created an environment where students feel like they are exploring a universe of knowledge.<br><br><b>The Results:</b> A 40% increase in student engagement and a design that won multiple industry awards for creative education.",
+          role: "Lead Product Designer",
+          year: "2024",
+          tools: "GSAP, WebGL, Figma"
+        },
+        petals: {
+          title: "Petals Luxury Floral",
+          category: "Digital Experience",
+          image: "petals_project_1777625690194.png",
+          description: "An immersive digital experience for a boutique luxury florist. <br><br><b>The Challenge:</b> Translating the tactile, olfactory beauty of flowers into a digital screen without losing the premium 'luxury' feel.<br><br><b>The Solution:</b> We focused on organic animations and a soft, airy palette to mirror the physical beauty of high-end floral arrangements. Every transition was designed to feel like a blooming flower, using custom SVG morphing techniques.<br><br><b>The Results:</b> Petals saw a record-breaking Valentine's Day season with a seamless mobile-first checkout experience.",
+          role: "Creative Director",
+          year: "2023",
+          tools: "Next.js, Framer Motion"
+        },
+        guppy: {
+          title: "Guppy Branding",
+          category: "Brand Identity",
+          image: "guppy_project_1777625717114.png",
+          description: "A playful yet professional brand identity overhaul. <br><br><b>The Challenge:</b> Balancing a fun name like 'Guppy' with the serious technical requirements of a fintech startup.<br><br><b>The Solution:</b> The Guppy project explored interactive physics-based elements like bubbles to create a memorable and tactile brand language. We used a muted, sophisticated palette to ground the playful bubble interactions, creating a unique 'Serious Play' identity.<br><br><b>The Results:</b> The brand was successfully acquired and is now a leader in young-adult financial literacy.",
+          role: "Visual Designer",
+          year: "2024",
+          tools: "Canvas API, Illustrator"
+        },
+        birthdays: {
+          title: "Birthdays App",
+          category: "Social Platform",
+          image: "birthday_project_1777625620296.png",
+          description: "A personal celebration hub that redefines how we store and share milestone memories. <br><br><b>The Challenge:</b> Social media has become noisy; we wanted to create a quiet, private space for intimate family celebrations.<br><br><b>The Solution:</b> The interface uses a card-stacking metaphor to represent the layers of time and shared history. Users can 'stack' memories, creating a physical sense of time passing and traditions growing.<br><br><b>The Results:</b> Featured on the App Store as 'App of the Day' for its innovative approach to private social networking.",
+          role: "UX/UI Designer",
+          year: "2023",
+          tools: "React, Supabase"
+        }
+      };
+
+      function loadProject() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id') || 'brownthought';
+        const project = projectData[id];
+
+        if (project) {
+          document.title = `${project.title} | Priyanka Gunjal`;
+          const container = document.getElementById('project-content');
+          container.innerHTML = `
+            <div class="project-hero">
+              <span class="project-category">${project.category}</span>
+              <h1 class="project-title">${project.title}</h1>
+              <div class="project-main-image">
+                <img src="${project.image}" alt="${project.title}">
+              </div>
+              <div class="project-grid">
+                <div class="project-meta">
+                  <div>
+                    <h3>Role</h3>
+                    <p>${project.role}</p>
+                  </div>
+                  <div>
+                    <h3>Year</h3>
+                    <p>${project.year}</p>
+                  </div>
+                  <div>
+                    <h3>Tools</h3>
+                    <p>${project.tools}</p>
+                  </div>
+                </div>
+                <div class="project-description">
+                  <p>${project.description}</p>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+      }
+
+      // Initialize
+      window.onload = loadProject;
+
+      // Theme Sync
+      const savedTheme = localStorage.getItem('portfolio-theme');
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+      }
+    </script>
+  </body>
 </html>

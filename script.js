@@ -289,29 +289,31 @@ document.addEventListener('DOMContentLoaded', () => {
     // 6. Star Generator for Brownthought Card (Card 3)
     // ─────────────────────────────────────────────────────────
     function generateStars() {
-        const brownthoughtCard = document.querySelector('.brownthought .bt-starry-bg');
-        if (!brownthoughtCard) return;
+        const starryContainers = document.querySelectorAll('.bt-starry-bg');
+        if (!starryContainers.length) return;
 
-        const starCount = 35; // Increased density for Card 3
-        for (let i = 0; i < starCount; i++) {
-            const star = document.createElement('div');
-            star.className = 'star-dot';
-            
-            const x = Math.random() * 100;
-            const y = Math.random() * 100;
-            const size = 1 + Math.random() * 2;
-            const duration = 1.5 + Math.random() * 2.5; // Slower, smoother duration
-            const delay = Math.random() * 3;
+        starryContainers.forEach(container => {
+            const starCount = 40; 
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star-dot';
 
-            star.style.left = `${x}%`;
-            star.style.top = `${y}%`;
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
-            star.style.setProperty('--duration', `${duration}s`);
-            star.style.setProperty('--delay', `${delay}s`);
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const size = 1 + Math.random() * 2;
+                const duration = 1.5 + Math.random() * 2.5;
+                const delay = Math.random() * 3;
 
-            brownthoughtCard.appendChild(star);
-        }
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.setProperty('--duration', `${duration}s`);
+                star.style.setProperty('--delay', `${delay}s`);
+
+                container.appendChild(star);
+            }
+        });
     }
 
     generateStars();

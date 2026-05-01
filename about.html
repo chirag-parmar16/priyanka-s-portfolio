@@ -1,38 +1,166 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About | Priyanka Gunjal</title>
+    <link rel="stylesheet" href="style.css" />
     <style>
       body {
-        background-color: #0d0d0d;
-        color: #f0ede6;
-        font-family: "Inter", sans-serif;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        margin: 0;
+        overflow-y: auto !important;
+        height: auto !important;
+        width: auto !important;
       }
-      h1 {
-        font-family: "DM Serif Display", serif;
-        font-size: 3rem;
-        opacity: 0.8;
+      .about-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 6rem 2rem;
+        min-height: 100vh;
       }
-      a {
-        color: #a29bfe;
+      .back-nav {
+        margin-bottom: 4rem;
+        display: inline-block;
         text-decoration: none;
-        margin-top: 2rem;
+        color: var(--text-color);
+        opacity: 0.6;
+        transition: opacity 0.3s ease;
+        font-family: var(--font-sans);
+        font-weight: 500;
+      }
+      .back-nav:hover { opacity: 1; }
+
+      .about-hero {
+        margin-bottom: 6rem;
+      }
+      .about-tag {
+        font-family: var(--font-sans);
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 0.9rem;
+        color: #a29bfe;
+        margin-bottom: 2rem;
         display: block;
+      }
+      .about-title {
+        font-family: var(--font-serif);
+        font-size: clamp(3rem, 10vw, 5.5rem);
+        line-height: 1.1;
+        margin-bottom: 3rem;
+      }
+      
+      .about-content {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 6rem;
+        align-items: start;
+      }
+      
+      .bio-text {
+        font-size: 1.5rem;
+        line-height: 1.5;
+        opacity: 0.9;
+      }
+      
+      .skills-section h2 {
+        font-family: var(--font-serif);
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+      
+      .skills-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      
+      .skill-item {
+        padding: 1.5rem;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+      }
+      body.light-theme .skill-item {
+        background: rgba(0, 0, 0, 0.02);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .skill-item:hover {
+        background: rgba(162, 155, 254, 0.1);
+        border-color: #a29bfe;
+        transform: translateY(-5px);
+      }
+
+      .contact-footer {
+        margin-top: 8rem;
+        padding-top: 4rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+      }
+      body.light-theme .contact-footer {
+        border-top-color: rgba(0, 0, 0, 0.1);
+      }
+      .contact-link {
+        font-family: var(--font-serif);
+        font-size: clamp(2rem, 5vw, 3rem);
+        color: var(--text-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+      .contact-link:hover { color: #a29bfe; }
+
+      @media (max-width: 850px) {
+        .about-content { grid-template-columns: 1fr; gap: 4rem; }
       }
     </style>
   </head>
   <body>
-    <div style="text-align: center">
-      <h1>About Priyanka</h1>
-      <p>This is where your story begins.</p>
-      <a href="index.html">&larr; Back to Portfolio</a>
+    <div class="about-container">
+      <a href="index.html" class="back-nav">&larr; Back to Portfolio</a>
+      
+      <section class="about-hero">
+        <span class="about-tag">About Me</span>
+        <h1 class="about-title">Designing with Intention.</h1>
+      </section>
+
+      <div class="about-content">
+        <div class="bio-section">
+          <p class="bio-text">
+            I'm Priyanka Gunjal, a multidisciplinary designer based in Northern California. 
+            I believe that great design isn't just about how it looks, but how it feels and 
+            functions in the hands of the user. 
+            <br><br>
+            My approach blends mathematical precision with editorial elegance, ensuring that 
+            every pixel serves a purpose. Whether it's a marketing bootcamp or a personal 
+            memory hub, I strive to create digital experiences that resonate on a human level.
+          </p>
+        </div>
+
+        <div class="skills-section">
+          <h2>Core Expertise</h2>
+          <div class="skills-grid">
+            <div class="skill-item">UI/UX Design</div>
+            <div class="skill-item">Visual Branding</div>
+            <div class="skill-item">GSAP Animation</div>
+            <div class="skill-item">Interaction Design</div>
+            <div class="skill-item">Product Strategy</div>
+            <div class="skill-item">Design Systems</div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="contact-footer">
+        <p style="margin-bottom: 1rem; opacity: 0.5;">Interested in collaborating?</p>
+        <a href="mailto:example@gmail.com" class="contact-link">Let's build something together.</a>
+      </footer>
     </div>
+
+    <script>
+      // Theme Sync
+      const savedTheme = localStorage.getItem('portfolio-theme');
+      if (savedTheme === 'light') {
+        document.body.classList.add('light-theme');
+      }
+    </script>
   </body>
 </html>

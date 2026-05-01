@@ -30,6 +30,52 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // ─────────────────────────────────────────────────────────
+    // 1. Audio Preloading & Hover Sounds
+    // ─────────────────────────────────────────────────────────
+    const sounds = {
+        nature: new Audio('Audio/nature.mp3'),
+        sparkling: new Audio('Audio/sparkling.mp3'),
+        bubble: new Audio('Audio/Bubble.mp3')
+    };
+
+    // Pre-configure audio for responsiveness
+    Object.values(sounds).forEach(audio => {
+        audio.preload = 'auto';
+        audio.load(); // Force immediate load
+    });
+
+    // Unlock Audio Context on first interaction (Required by Browsers)
+    const unlockAudio = () => {
+        Object.values(sounds).forEach(audio => {
+            audio.play().then(() => {
+                audio.pause();
+                audio.currentTime = 0;
+            }).catch(() => {});
+        });
+        window.removeEventListener('click', unlockAudio);
+    };
+    window.addEventListener('click', unlockAudio);
+
+    function playSound(name) {
+        if (sounds[name]) {
+            sounds[name].currentTime = 0;
+            const playPromise = sounds[name].play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log("Audio playback prevented:", error);
+                });
+            }
+        }
+    }
+
+    function stopSound(name) {
+        if (sounds[name]) {
+            sounds[name].pause();
+            sounds[name].currentTime = 0;
+        }
+    }
+
+    // ─────────────────────────────────────────────────────────
     // 3. Wavy Text Animation (GSAP)
     // ─────────────────────────────────────────────────────────
     document.querySelectorAll('.name, .tagline').forEach(el => {
@@ -79,6 +125,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         card.addEventListener('mouseenter', () => {
+            // Audio Feedback
+            if (card.classList.contains('brownthought')) playSound('sparkling');
+            if (card.classList.contains('guppy')) playSound('bubble');
+            if (card.classList.contains('petals') || card.classList.contains('birthdays')) playSound('nature');
+            
             // Removed scale: 1.025 for stability
             // Shimmer sweep
             gsap.fromTo(shimmer,
@@ -89,6 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         card.addEventListener('mouseleave', () => {
+            // Stop Audio Feedback
+            if (card.classList.contains('brownthought')) stopSound('sparkling');
+            if (card.classList.contains('guppy')) stopSound('bubble');
+            if (card.classList.contains('petals') || card.classList.contains('birthdays')) stopSound('nature');
+
             gsap.to(card, { 
                 duration: 0.6, 
                 ease: "power2.out" 
@@ -181,10 +237,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hero Card Hover -> About Pill
         if (heroCard) {
             heroCard.addEventListener('mouseenter', () => {
+                playSound('nature');
                 cardFollower.innerHTML = `<div class="about-pill">about &rarr;</div>`;
                 cardFollower.classList.add('active');
             });
             heroCard.addEventListener('mouseleave', () => {
+                stopSound('nature');
                 cardFollower.classList.remove('active');
             });
         }
@@ -192,6 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Portrait Card Hover -> Thought Bubble SVG
         if (portraitCard) {
             portraitCard.addEventListener('mouseenter', () => {
+                playSound('nature');
                 cardFollower.innerHTML = `
                     <div class="cloud-cursor">
                         <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -205,6 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 cardFollower.classList.add('active');
             });
             portraitCard.addEventListener('mouseleave', () => {
+                stopSound('nature');
                 cardFollower.classList.remove('active');
             });
         }

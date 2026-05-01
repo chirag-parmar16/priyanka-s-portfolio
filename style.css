@@ -1,0 +1,1244 @@
+:root {
+  --bg-color: #0d0d0d;
+  --text-color: #f0ede6;
+  --text-dark: #f0ede6;
+  --accent-color: #d4b5b0;
+  --card-bg: #161616;
+  --font-serif: "DM Serif Display", serif;
+  --font-sans: "Inter", sans-serif;
+  --radius: 18px;
+  --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  --gap: 1.5rem; /* Increased spacing */
+  /* Dark Theme Hero Gradient (Architectural Deep Tones) */
+  --hero-gradient: linear-gradient(135deg, #1B263B 0%, #0D1B2A 50%, #1B263B 100%);
+}
+
+body.light-theme {
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --text-dark: #1a1a1a;
+  --card-bg: #f8f8fa;
+  --accent-color: #f2a17b;
+  /* Light Theme Hero Gradient (Rose to Peach to Sand) */
+  --hero-gradient: linear-gradient(135deg, #BC8E8E 0%, #F2A17B 50%, #F4D0A4 100%);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  height: 100vh;
+  width: 100vw;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  padding: 0.75rem; /* Reduced from 1rem */
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 50fr 26fr 24fr; /* Optimized: 48% | 28% | 24% */
+  gap: var(--gap);
+  width: 100%;
+  height: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  height: 100%;
+  min-height: 0;
+}
+
+/* Grid Cards */
+.grid-card {
+  background-color: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  min-height: 0;
+  transition:
+    background-color 0.4s ease,
+    border-color 0.4s ease;
+  cursor: pointer; /* Signal interactivity by default */
+}
+
+body.light-theme .grid-card {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+body.light-theme .connect-card {
+  background: #2D3748 !important; /* Distinct dark architectural slate */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .connect-label,
+body.light-theme .connect-handle {
+  color: white; /* Contrast for the dark slate */
+}
+
+/* Column Left */
+.col-left {
+  display: grid;
+  grid-template-rows: 5.2fr 0.8fr; /* Card 2 is now much sleeker */
+}
+
+.hero-card {
+  background: linear-gradient(135deg, #1a2a3a 0%, #0d0d0d 50%, #1a2a3a 100%);
+  background-size: 300% 300%;
+  background-position: 0% 0%;
+  position: relative;
+  overflow: hidden;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 2rem;
+  color: white;
+  transition: background-color 0.4s ease; /* Removed transform transition */
+}
+
+.hero-card:hover {
+  /* Removed background-position shift to stay stable */
+}
+
+.hero-card {
+  cursor: default; /* Information only, not a link */
+}
+
+/* Advanced 6-Keyframe Smog Motion */
+.hero-card::after {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background:
+    radial-gradient(circle at 40% 40%, rgba(44, 62, 80, 0.2), transparent 50%),
+    radial-gradient(circle at 60% 60%, rgba(52, 73, 94, 0.15), transparent 40%),
+    radial-gradient(circle at 30% 70%, rgba(30, 60, 90, 0.1), transparent 50%);
+  filter: blur(70px);
+  opacity: 0.4;
+  transition: opacity 1.2s ease;
+  animation: advancedDrift 18s infinite linear;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-card:hover::after {
+  opacity: 0.8;
+}
+
+@keyframes advancedDrift {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  16% {
+    transform: translate(5%, -5%) rotate(2deg) scale(1.05);
+  }
+  33% {
+    transform: translate(-3%, 7%) rotate(-1deg) scale(1.1);
+  }
+  50% {
+    transform: translate(7%, 3%) rotate(4deg) scale(1.02);
+  }
+  66% {
+    transform: translate(-5%, -2%) rotate(1deg) scale(1.08);
+  }
+  83% {
+    transform: translate(2%, -8%) rotate(-3deg) scale(1.03);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+}
+
+.hero-card > * {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem; /* Reduced from 0.9rem */
+  font-weight: 500;
+}
+
+.name {
+  font-family: var(--font-serif);
+  font-size: 3.2rem; /* Reduced from 4.5rem */
+  line-height: 1.1;
+  margin-bottom: 0.75rem;
+  font-weight: 400;
+}
+
+.tagline {
+  font-size: 1rem; /* Reduced from 1.2rem */
+  max-width: 400px;
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+.connect-card {
+  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #2a2a2a 100%);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background-color 0.4s ease;
+}
+
+.connect-inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.connect-label {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: white;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  position: absolute;
+}
+
+.connect-card:hover .connect-label {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.connect-handle {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: #a29bfe; /* Lavender Blue for handle */
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid transparent; /* Typewriter cursor */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.connect-card:hover .connect-handle {
+  opacity: 1;
+  border-right-color: #a29bfe;
+}
+
+/* Light Smog Layer for Card 2 */
+.connect-card::after {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background:
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(212, 181, 176, 0.15),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 60% 60%,
+      rgba(240, 237, 230, 0.1),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 30% 70%,
+      rgba(255, 255, 255, 0.05),
+      transparent 50%
+    );
+  filter: blur(60px);
+  opacity: 0;
+  transition: opacity 1s ease;
+  animation: advancedDrift 15s infinite linear;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.connect-card:hover::after {
+  opacity: 1;
+}
+
+.connect-inner {
+  font-size: 1.8rem; /* Reduced from 2.5rem */
+  font-family: var(--font-serif);
+  color: var(--text-color);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Column Mid */
+.col-mid {
+  display: grid;
+  grid-template-rows: 1.2fr 1.1fr 1fr 1.1fr;
+}
+
+/* Unified Project Card Styles (Col Mid) */
+.project-card {
+  background: #222; /* More visible frame color */
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  perspective: 1000px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /* Define the edge of the frame */
+}
+
+.bt-starry-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.project-card:hover .bt-starry-bg {
+  opacity: 1;
+}
+
+/* Individual Star Dots (Generated by JS) */
+.star-dot {
+  position: absolute;
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0;
+  filter: blur(0.2px); /* Slight softness for smoothness */
+}
+
+/* Smooth Blinking Animation - Only for Brownthought (Card 3) */
+.brownthought:hover .star-dot {
+  animation: smoothStarPulse var(--duration) infinite ease-in-out var(--delay);
+}
+
+@keyframes smoothStarPulse {
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.bt-header {
+  position: absolute;
+  top: 1rem;
+  left: 1.25rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  z-index: 1;
+  transition: all 0.4s ease;
+}
+
+.bt-content-layer {
+  position: absolute;
+  inset: 0; /* Touch all edges initially */
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 1.5rem;
+  /* Specific Diagonal Radius: Reduced to match new global radius and offset */
+  border-top-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  transform-origin: left top;
+  background: #1a140f; /* Fallback */
+  overflow: hidden;
+  /* Normal state: Shifted down and right so only Top and Left background is visible */
+  transform: translate(14px, 14px);
+}
+
+.bt-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.85);
+  z-index: -1;
+  transition: transform 0.8s ease;
+  border-radius: inherit; /* Matches Inner Card Radius */
+}
+
+.birthdays {
+  background: url("birthday_project_1777625620296.png") center/cover no-repeat;
+  transition: background 0.4s ease;
+}
+
+.birthdays:hover {
+  background: #d0d8e8; /* Light solid color on hover for the exposed frame */
+}
+
+.birthdays .bt-content-layer {
+  background: transparent; /* Keep image visible always */
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.birthdays:hover .bt-bg-img {
+  opacity: 1; /* Ensure image stays visible on hover */
+}
+
+/* Card 4: Falling Petals Container */
+.petals-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  overflow: hidden;
+}
+
+.petals:hover .petals-container {
+  opacity: 1;
+}
+
+.petal {
+  position: absolute;
+  background: #ffb7c5; /* Sakura Pink */
+  border-radius: 150% 0 150% 0; /* Petal shape */
+  opacity: 0.8;
+  animation: petalFall linear infinite;
+}
+
+@keyframes petalFall {
+  0% {
+    transform: translateY(-20px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(350px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Card 5: Bubble Pop Container */
+.bubbles-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  overflow: hidden;
+}
+
+.guppy:hover .bubbles-container {
+  opacity: 1;
+}
+
+.bubble {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95); /* Solid Bubbles */
+  border: 1px solid rgba(255, 255, 255, 1);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  animation: bubbleRise linear infinite;
+}
+
+@keyframes bubbleRise {
+  0% {
+    transform: translateY(110%) scale(0.5);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  80% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-20%) scale(1.2);
+    opacity: 0;
+  }
+}
+
+.bt-main-box h2 {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  line-height: 1.2;
+  margin-bottom: 0.3rem;
+  color: white;
+  font-weight: 600;
+}
+
+.bt-main-box p {
+  font-size: 0.75rem;
+  opacity: 0.9;
+  color: white;
+  font-weight: 400;
+}
+
+/* Hover Slide-Tilt Reveal (Floating Inner Card) */
+.project-card:hover .bt-content-layer {
+  transform: translate(12px, 35%) rotate(-5deg);
+  box-shadow: -10px -10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.project-card:hover .bt-bg-img {
+  filter: brightness(0.9); /* Keep brightness change, remove scale */
+}
+
+.guppy {
+  background: linear-gradient(135deg, #1a2a2a 0%, #0d0d0d 50%, #1a2a2a 100%);
+  background-size: 300% 300%;
+  background-position: 0% 0%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  transition: background-position 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.guppy:hover {
+  background-position: 100% 100%;
+}
+
+/* Teal/Sage Smog Layer for Card 5 */
+.guppy::after {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background:
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(100, 200, 180, 0.15),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 60% 60%,
+      rgba(150, 180, 160, 0.1),
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 30% 70%,
+      rgba(80, 150, 140, 0.08),
+      transparent 50%
+    );
+  filter: blur(65px);
+  opacity: 0;
+  transition: opacity 1s ease;
+  animation: advancedDrift 20s infinite linear reverse; /* Reverse for variety */
+  pointer-events: none;
+  z-index: 0;
+}
+
+.guppy:hover::after {
+  opacity: 1;
+}
+
+.guppy-content {
+  position: relative;
+  z-index: 2;
+}
+
+.guppy-content {
+  text-align: center;
+  color: var(--text-color);
+}
+
+.guppy-icon svg {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0.5rem;
+}
+
+/* Column Right */
+.col-right {
+  display: grid;
+  grid-template-rows: 4fr 0.4fr 3fr; /* Reduced from 0.8fr */
+}
+
+.image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-card {
+  cursor: default; /* Portrait card is purely visual */
+}
+
+.status-card {
+  background: linear-gradient(135deg, #1a1a2e 0%, #0d0d0d 50%, #1a1a2e 100%);
+  background-size: 300% 300%;
+  background-position: 0% 0%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 0 1.25rem; /* Slightly reduced padding */
+  color: var(--text-color);
+  transition: background-position 1s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 40px !important; /* Increased border radius */
+}
+
+.status-card:hover {
+  background-position: 100% 100%;
+}
+
+/* Purple Smog Layer for Card 8 */
+.status-card::after {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background:
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(138, 43, 226, 0.12),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 60% 60%,
+      rgba(147, 112, 219, 0.08),
+      transparent 40%
+    );
+  filter: blur(60px);
+  opacity: 0;
+  transition: opacity 1s ease;
+  animation: advancedDrift 18s infinite linear;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.status-card:hover::after {
+  opacity: 1;
+}
+
+.status-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem; /* Reduced gap */
+  font-size: 0.8rem; /* Reduced from 0.9rem */
+  color: var(--text-color);
+  white-space: nowrap; /* Force one line */
+  overflow: hidden;
+}
+
+.status-icon {
+  display: flex;
+  align-items: center;
+  color: #a29bfe; /* Lavender Blue */
+  transition:
+    transform 0.4s ease,
+    filter 0.4s ease;
+}
+
+.status-card:hover .status-icon {
+  transform: scale(1.1) rotate(-10deg);
+  filter: drop-shadow(0 0 8px rgba(162, 155, 254, 0.6));
+}
+
+.status-text-container {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem; /* Reduced gap */
+  white-space: nowrap;
+}
+
+.status-base {
+  opacity: 0.7;
+}
+
+.status-reveal {
+  color: #a29bfe;
+  font-weight: 500;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid transparent; /* Typewriter cursor */
+}
+
+.status-card:hover .status-reveal {
+  border-right-color: #a29bfe;
+}
+
+.resume-card {
+  background: var(--card-bg);
+  padding: 0; /* Clear padding for precise absolute placement */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: background 0.4s ease;
+  position: relative;
+  border-radius: 32px; /* Large outer radius from reference */
+}
+
+.resume-card:hover {
+  background: #1a1a1a;
+}
+
+.resume-header {
+  width: 100%;
+  padding-top: 0.6rem; /* Reduced from 1.5rem */
+  text-align: center;
+  font-size: 1.1rem;
+  font-family: var(--font-sans);
+  color: #888;
+  font-weight: 600;
+  height: 3rem; /* Reduced from 4rem */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+  z-index: 10;
+}
+
+.resume-label::after {
+  content: "resume";
+  transition: all 0.3s ease;
+}
+
+.resume-card:hover .resume-label::after {
+  content: "see it here";
+  color: #888;
+}
+
+.resume-stack {
+  position: absolute;
+  inset: 3rem 0 0 1.5rem; /* Revealed Top and Left frame adjusted for header */
+  overflow: hidden; /* STRICT: Clip layers for perfect right/bottom alignment */
+}
+
+.resume-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.layer-bg-1 {
+  background: #b67d86;
+  z-index: 1;
+  border-top-left-radius: 28px;
+  transform: translate(0, 0);
+}
+
+.layer-bg-2 {
+  background: linear-gradient(135deg, #f0a080, #d48a6a);
+  z-index: 2;
+  border-top-left-radius: 28px;
+  transform: translate(20px, 20px);
+}
+
+.layer-top {
+  background: white;
+  z-index: 3;
+  border-top-left-radius: 24px; /* Slightly smaller radius for nesting */
+  transform: translate(40px, 40px);
+  overflow: hidden;
+}
+
+/* Match architectural shift on hover while maintaining right-flush alignment */
+.resume-card:hover .layer-bg-1 {
+  transform: translate(0px, 0px);
+}
+.resume-card:hover .layer-bg-2 {
+  transform: translate(10px, 10px);
+}
+.resume-card:hover .layer-top {
+  transform: translate(20px, 20px);
+}
+
+.resume-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center; /* Ensure header of resume is visible */
+  border-radius: inherit;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: 1.5fr 1fr;
+  }
+  .right-col {
+    grid-column: span 2;
+    flex-direction: row;
+  }
+  .status-card,
+  .resume-card {
+    flex: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-card {
+    padding: 2rem;
+  }
+  .name {
+    font-size: 3rem;
+  }
+  .hero-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .portrait-container {
+    width: 120px;
+    height: 160px;
+  }
+  .middle-col,
+  .right-col {
+    flex-direction: column;
+  }
+  .project-card {
+    height: 300px;
+  }
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+}
+
+.theme-icon-light {
+  display: none;
+}
+.theme-icon-dark {
+  display: block;
+}
+
+body.light-theme .theme-toggle {
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #1d1d1f;
+}
+
+body.light-theme .theme-icon-light {
+  display: block;
+}
+body.light-theme .theme-icon-dark {
+  display: none;
+}
+
+.brownthought .project-overlay {
+  top: 1.5rem;
+  left: 1.5rem;
+}
+
+.petals {
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.birthdays {
+  background: #1a1a1a;
+}
+
+.resume-body {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+/* ─── Card Background Animations ─────────────────────── */
+
+/* Each card type gets its own hover glow gradient */
+.grid-card {
+  --glow-opacity: 0;
+  will-change: transform;
+}
+
+.hero-card:hover {
+  --hg: rgba(212, 181, 176, 0.12);
+}
+.connect-card:hover {
+  --hg: rgba(255, 255, 255, 0.08);
+}
+.brownthought:hover {
+  --hg: rgba(190, 150, 100, 0.15);
+}
+.petals:hover {
+  --hg: rgba(255, 180, 180, 0.12);
+}
+.guppy:hover {
+  --hg: rgba(100, 200, 180, 0.12);
+}
+.birthdays:hover {
+  --hg: rgba(150, 180, 255, 0.12);
+}
+.image-card:hover {
+  --hg: rgba(255, 220, 180, 0.1);
+}
+.status-card:hover {
+  --hg: rgba(76, 175, 80, 0.15);
+}
+.resume-card:hover {
+  --hg: rgba(240, 237, 230, 0.08);
+}
+
+.grid-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    var(--hg, rgba(255, 255, 255, 0.08)),
+    transparent 65%
+  );
+  opacity: var(--glow-opacity);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.4s ease;
+  border-radius: inherit;
+}
+
+/* Shimmer sweep overlay */
+.card-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 2;
+  border-radius: inherit;
+  opacity: 0;
+}
+
+/* Ripple container */
+.card-ripple {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.ripple-dot {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  pointer-events: none;
+}
+
+/* Pulse glow on connect card hover */
+.connect-card:hover .connect-inner {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    text-shadow: 0 0 0px rgba(240, 237, 230, 0);
+  }
+  50% {
+    text-shadow: 0 0 24px rgba(240, 237, 230, 0.4);
+  }
+}
+
+/* Status dot pulse */
+.status-dot {
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes status-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(76, 175, 80, 0);
+  }
+}
+
+/* Make sure project images have their own overlay layer */
+.project-card > img {
+  z-index: 0;
+  position: relative;
+  transition:
+    transform 0.5s ease,
+    filter 0.5s ease;
+}
+
+.project-card:hover > img {
+  filter: brightness(0.7);
+}
+
+.project-overlay {
+  z-index: 4;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+/* ─────────────────────────────────────────────────────────
+   LIGHT THEME OVERRIDES (Cards 1, 2, 3, 4, 5, 6, 8, 9)
+   ───────────────────────────────────────────────────────── */
+
+body.light-theme .hero-card {
+  background: var(--hero-gradient); /* Restored Vibrant Blue-to-Orange */
+  color: white; /* Contrast for the gradient */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .hero-card h1,
+body.light-theme .hero-card p,
+body.light-theme .hero-card .clock,
+body.light-theme .hero-card .location {
+  color: white;
+}
+
+body.light-theme .connect-card {
+  background: #2D3748 !important; /* Distinct dark architectural slate */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .connect-label,
+body.light-theme .connect-handle {
+  color: white;
+}
+
+/* Card 3: Brownthought */
+body.light-theme .brownthought {
+  background-color: #f5f5f7 !important;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.02);
+}
+body.light-theme .brownthought:hover {
+  background-color: #4c2d2a !important;
+}
+
+/* Card 4: Petals */
+body.light-theme .petals {
+  background-color: #f5f5f7 !important;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.02);
+}
+body.light-theme .petals:hover {
+  background-color: #093826 !important;
+}
+
+/* Card 5: Guppy */
+body.light-theme .guppy {
+  background-color: #f5f5f7 !important;
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.04),
+    0 1px 3px rgba(0, 0, 0, 0.02);
+}
+body.light-theme .guppy:hover {
+  background-color: #005bb2 !important;
+}
+
+/* Card 6: Birthdays */
+body.light-theme .birthdays {
+  background-color: #f5f5f7 !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+body.light-theme .birthdays:hover {
+  background-color: #7F9B4E !important;
+}
+
+body.light-theme .project-card {
+  background: #f5f5f7;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme .bt-header {
+  color: #1a1a1a;
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .bt-main-box {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .bt-main-box h2 {
+  color: #1a1a1a;
+}
+
+body.light-theme .bt-main-box p {
+  color: #666;
+}
+
+body.light-theme .status-card {
+  background: #f0f0f5;
+  color: #1a1a1a;
+}
+
+body.light-theme .status-base {
+  color: #1a1a1a;
+}
+
+body.light-theme .status-reveal::after {
+  color: #0071e3; /* Blue highlight in light mode */
+}
+
+body.light-theme .resume-card {
+  background: #f8f8fa;
+}
+
+body.light-theme .resume-header {
+  color: #1a1a1a;
+}
+
+.hero-card .full-card-overlay,
+.image-card .full-card-overlay {
+  cursor: none !important;
+}
+
+.full-card-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  text-decoration: none;
+  background: transparent;
+}
+
+/* ─── Contextual Follower ────────────────────────────── */
+.card-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+  transition: opacity 0.3s cubic-bezier(0.23, 1, 0.32, 1), 
+              transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-follower.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.hero-card,
+.image-card {
+  cursor: none !important; /* Hide native cursor for contextual followers */
+}
+
+.about-pill {
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a1a1a;
+  padding: 1.5rem 3.5rem; /* Massive size for impact */
+  border-radius: 60px;
+  font-family: var(--font-sans);
+  font-size: 1.4rem; /* Significantly larger font */
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.03em;
+  text-transform: uppercase; /* Editorial feel */
+}
+
+.cloud-cursor {
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+}
+
+body.light-theme .about-pill {
+  background: rgba(26, 26, 26, 0.9);
+  color: white;
+}
+
+/* Ensure project overlays remain legible */
+body.light-theme .project-overlay {
+  color: #1a1a1a;
+  text-shadow: none;
+}

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Priyanka Gunjal | Designer</title>
+    <meta
+      name="description"
+      content="Personal portfolio of Priyanka Gunjal, a designer shaping products and experiences with intention."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="card-follower" class="card-follower"></div>
+
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <svg
+        class="theme-icon-light"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+        stroke="currentColor"
+        stroke-width="2"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg
+        class="theme-icon-dark"
+        viewBox="0 0 24 24"
+        width="24"
+        height="24"
+        stroke="currentColor"
+        stroke-width="2"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+
+    <main class="container">
+      <div class="portfolio-grid">
+        <!-- Column 1: Hero & Connect -->
+        <div class="column col-left">
+          <div class="grid-card hero-card">
+            <a href="about.html" class="full-card-overlay"></a>
+            <div class="hero-top">
+              <span id="live-clock" class="clock">00:00:00 AM</span>
+              <span class="location">Northern California</span>
+            </div>
+            <div class="hero-body">
+              <h1 class="name">Priyanka Gunjal</h1>
+              <p class="tagline">
+                I'm a designer that shapes products and experiences with
+                intention, embracing ambiguity as part of the process.
+              </p>
+            </div>
+          </div>
+          <div class="grid-card connect-card">
+            <a
+              href="https://www.linkedin.com/in/priyanka"
+              target="_blank"
+              class="connect-inner"
+            >
+              <span class="connect-label">connect</span>
+              <span
+                class="connect-handle"
+                data-text="linkedin.com/in/priyanka"
+              ></span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Column 2: Project Stack -->
+        <div class="column col-mid">
+          <div class="grid-card project-card brownthought">
+            <a
+              href="project.html"
+              target="_blank"
+              class="full-card-overlay"
+            ></a>
+            <div class="bt-starry-bg"></div>
+            <div class="bt-header">Brownthought &rarr;</div>
+            <div class="bt-content-layer">
+              <img
+                src="brownthought_project_1777626039771.png"
+                alt="Brownthought"
+                class="bt-bg-img"
+              />
+              <div class="bt-main-box">
+                <h2>Brownthought Academy</h2>
+                <p>Marketing Bootcamp For Future Changemakers</p>
+              </div>
+            </div>
+          </div>
+          <div class="grid-card project-card petals">
+            <a
+              href="project.html"
+              target="_blank"
+              class="full-card-overlay"
+            ></a>
+            <div class="petals-container"></div>
+            <div class="bt-header">Petals &rarr;</div>
+            <div class="bt-content-layer">
+              <img
+                src="petals_project_1777625690194.png"
+                alt="Petals"
+                class="bt-bg-img"
+              />
+              <div class="bt-main-box">
+                <h2>Petals</h2>
+                <p>Digital Floral Experience</p>
+              </div>
+            </div>
+          </div>
+          <div class="grid-card project-card guppy">
+            <a
+              href="project.html"
+              target="_blank"
+              class="full-card-overlay"
+            ></a>
+            <div class="bubbles-container"></div>
+            <div class="bt-header">Guppy &rarr;</div>
+            <div class="bt-content-layer">
+              <img
+                src="guppy_project_1777625717114.png"
+                alt="Guppy"
+                class="bt-bg-img"
+              />
+              <div class="bt-main-box">
+                <h2>Guppy</h2>
+                <p>Interactive Brand Design</p>
+              </div>
+            </div>
+          </div>
+          <div class="grid-card project-card birthdays">
+            <a
+              href="project.html"
+              target="_blank"
+              class="full-card-overlay"
+            ></a>
+            <div class="bt-header">Birthdays &rarr;</div>
+            <div class="bt-content-layer">
+              <img
+                src="birthday_project_1777625620296.png"
+                alt="Birthdays"
+                class="bt-bg-img"
+              />
+              <div class="bt-main-box">
+                <h2>Birthdays</h2>
+                <p>Personal Celebration Moments</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3: Image, Status, Resume -->
+        <div class="column col-right">
+          <div class="grid-card image-card">
+            <img
+              src="images/portrait.png"
+              alt="Scenic View"
+              class="scenic-img"
+            />
+          </div>
+          <div class="grid-card status-card">
+            <a href="mailto:example@gmail.com" class="full-card-overlay"></a>
+            <div class="status-content">
+              <span class="status-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 3c.132 0 .263 0 .393.007a9 9 0 0 0 7.5 13.923 9 9 0 0 1-15.35-6.93A9 9 0 0 1 12 3z"
+                  />
+                </svg>
+              </span>
+              <div class="status-text-container">
+                <span class="status-base">Priyanka is currently away.</span>
+                <span class="status-reveal" data-text="Leave a message?"></span>
+              </div>
+            </div>
+          </div>
+          <div class="grid-card resume-card">
+            <a
+              href="resume.pdf"
+              download="Priyanka_Resume.pdf"
+              class="full-card-overlay"
+            ></a>
+            <div class="resume-header">
+              <span class="resume-label"></span>
+            </div>
+            <div class="resume-stack">
+              <div class="resume-layer layer-bg-1"></div>
+              <div class="resume-layer layer-bg-2"></div>
+              <div class="resume-layer layer-top">
+                <img src="images/resume.png" alt="Resume" class="resume-img" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -35,7 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const sounds = {
         nature: new Audio('Audio/nature.mp3'),
         sparkling: new Audio('Audio/sparkling.mp3'),
-        bubble: new Audio('Audio/Bubble.mp3')
+        bubble: new Audio('Audio/Bubble.mp3'),
+        keyboard: new Audio('Audio/keyboard.mp3'),
+        pageflip: new Audio('Audio/pageflip.mp3')
     };
 
     // Pre-configure audio for responsiveness
@@ -129,6 +131,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (card.classList.contains('brownthought')) playSound('sparkling');
             if (card.classList.contains('guppy')) playSound('bubble');
             if (card.classList.contains('petals') || card.classList.contains('birthdays')) playSound('nature');
+            if (card.classList.contains('connect-card') || card.classList.contains('status-card')) playSound('keyboard');
+            if (card.classList.contains('resume-card')) playSound('pageflip');
             
             // Removed scale: 1.025 for stability
             // Shimmer sweep
@@ -144,6 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (card.classList.contains('brownthought')) stopSound('sparkling');
             if (card.classList.contains('guppy')) stopSound('bubble');
             if (card.classList.contains('petals') || card.classList.contains('birthdays')) stopSound('nature');
+            if (card.classList.contains('connect-card') || card.classList.contains('status-card')) stopSound('keyboard');
+            if (card.classList.contains('resume-card')) stopSound('pageflip');
 
             gsap.to(card, { 
                 duration: 0.6, 

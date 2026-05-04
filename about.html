@@ -1,165 +1,841 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About | Priyanka Gunjal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <style>
+      /* Quiet Luxury About Page - Inspired by Janelle Amores */
       body {
-        overflow-y: auto !important;
-        height: auto !important;
-        width: auto !important;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        height: auto;
+        padding: 0;
+        margin: 0;
+        background-color: var(--bg-color);
+        color: var(--text-color);
       }
-      .about-container {
-        max-width: 1000px;
+
+      .about-wrapper {
+        max-width: 1200px;
         margin: 0 auto;
-        padding: 6rem 2rem;
+        padding: 3rem 5rem 4rem 5rem;
         min-height: 100vh;
       }
-      .back-nav {
-        margin-bottom: 4rem;
-        display: inline-block;
-        text-decoration: none;
-        color: var(--text-color);
-        opacity: 0.6;
-        transition: opacity 0.3s ease;
-        font-family: var(--font-sans);
-        font-weight: 500;
-      }
-      .back-nav:hover { opacity: 1; }
 
-      .about-hero {
+      /* Layout Grid */
+      .about-layout {
+        display: grid;
+        grid-template-columns: 1.1fr 1fr;
+        gap: 3.5rem;
+        align-items: center;
+        padding-top: 2rem;
+        margin-bottom: 10rem;
+      }
+
+      .about-layout.reverse {
+        grid-template-columns: 1fr 1.1fr;
         margin-bottom: 6rem;
       }
-      .about-tag {
-        font-family: var(--font-sans);
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        font-size: 0.9rem;
-        color: #a29bfe;
-        margin-bottom: 2rem;
+
+      .about-image-box {
+        position: relative;
+        border-radius: 24px;
+        overflow: hidden;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+        width: 460px;
+        height: 552px;
+        flex-shrink: 0;
+      }
+
+      .about-layout.reverse .about-image-box {
+        order: 2;
+      }
+      .about-layout.reverse .about-text {
+        order: 1;
+      }
+
+      .about-image-box:hover {
+        transform: scale(1.03);
+      }
+
+      .about-image-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         display: block;
+        filter: grayscale(10%) contrast(1.05);
+        transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
       }
-      .about-title {
-        font-family: var(--font-serif);
-        font-size: clamp(3rem, 10vw, 5.5rem);
+
+      /* Typography */
+      .about-text {
+        padding-right: 1rem;
+      }
+
+      .about-layout.reverse .about-text {
+        padding-right: 0;
+        padding-left: 1rem;
+      }
+
+      .headline {
+        font-family: var(--font-sans);
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 500;
         line-height: 1.1;
-        margin-bottom: 3rem;
+        margin-bottom: 1.8rem;
+        color: var(--text-color);
+        letter-spacing: -0.02em;
       }
-      
-      .about-content {
+
+      .bio-para {
+        font-family: var(--font-sans);
+        font-size: 1.15rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+        color: var(--text-color);
+        opacity: 0.55;
+        font-weight: 400;
+        max-width: 480px;
+      }
+
+      .bio-para.highlight {
+        font-size: 1.3rem;
+        opacity: 0.8;
+        margin-top: 1rem;
+      }
+
+      .icon-box {
+        margin-bottom: 1.5rem;
+        color: var(--accent-color);
+        opacity: 0.8;
+      }
+
+      body.light-theme .bio-para {
+        opacity: 0.7;
+      }
+
+      /* Responsive */
+      @media (max-width: 950px) {
+        .about-layout,
+        .about-layout.reverse {
+          grid-template-columns: 1fr;
+          gap: 4rem;
+          text-align: left;
+          padding-top: 1rem;
+          margin-bottom: 6rem;
+        }
+        .about-layout.reverse .about-image-box {
+          order: 1;
+        }
+        .about-layout.reverse .about-text {
+          order: 2;
+          padding-left: 0;
+        }
+        .headline {
+          font-size: 2.8rem;
+        }
+        .about-image-box {
+          width: 100%;
+          max-width: 460px;
+          height: auto;
+          aspect-ratio: 460/552;
+          margin: 0 auto;
+        }
+        .giphy-box {
+          width: 100% !important;
+          max-width: 460px;
+          margin: 0 auto;
+        }
+      }
+
+      /* GIPHY Box Styling */
+      .giphy-box {
+        width: 460px;
+        height: auto;
+        border-radius: 24px;
+        overflow: hidden;
+        flex-shrink: 0;
+      }
+
+      .cta-link-btn {
+        display: inline-block;
+        margin-top: 1rem;
+        font-size: 1.2rem;
+        font-weight: 500;
+        color: var(--accent-color);
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        transition: var(--transition);
+      }
+      .cta-link-btn:hover {
+        opacity: 0.8;
+        transform: translateX(5px);
+      }
+
+      .side-projects-section {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 6rem;
+        margin-top: 4rem;
+      }
+
+      body.light-theme .side-projects-section {
+        border-top-color: rgba(0, 0, 0, 0.08);
+      }
+
+      .side-projects-title {
+        font-family: var(--font-sans);
+        font-size: 2.8rem;
+        font-weight: 500;
+        margin-bottom: 3.5rem;
+        color: var(--text-color);
+      }
+
+      .project-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 4rem;
+        gap: 2rem;
+      }
+
+      .project-info {
+        max-width: 600px;
+      }
+
+      .project-title-link {
+        color: #b25844; /* Terracotta tone from image */
+        font-size: 1.35rem;
+        font-weight: 500;
+        margin-bottom: 0.6rem;
+        display: block;
+        text-decoration: none;
+        line-height: 1.3;
+      }
+
+      .project-title-link:hover {
+        text-decoration: underline;
+      }
+
+      .project-summary {
+        font-size: 1.15rem;
+        line-height: 1.6;
+        opacity: 0.5;
+        color: var(--text-color);
+        font-weight: 400;
+      }
+
+      .project-date {
+        font-size: 1.15rem;
+        opacity: 0.4;
+        color: var(--text-color);
+        white-space: nowrap;
+        padding-top: 0.2rem;
+      }
+
+      @media (max-width: 950px) {
+        .project-row {
+          flex-direction: column;
+          gap: 0.5rem;
+        }
+        .project-date {
+          margin-top: 0.5rem;
+          opacity: 0.3;
+        }
+      }
+
+      /* Camera Roll Styling */
+      .camera-roll-section {
+        margin-top: 10rem;
+        margin-bottom: 10rem;
+      }
+
+      .camera-roll-title {
+        font-family: var(--font-sans);
+        font-size: 2.5rem;
+        font-weight: 500;
+        margin-bottom: 3.5rem;
+        color: var(--text-color);
+      }
+
+      .camera-roll-grid {
+        columns: 2;
+        column-gap: 1.5rem;
+        max-width: 1000px;
+      }
+
+      .camera-roll-item {
+        break-inside: avoid;
+        margin-bottom: 1.5rem;
+        width: 100%;
+      }
+
+      .camera-roll-item img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
+        border-radius: 24px;
+        display: block;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: transform 0.6s ease;
+      }
+
+      /* Specific Photo Sizes */
+      .cr-1 {
+        width: 459.2px;
+        height: 402.4px;
+      }
+      .cr-2 {
+        width: 459.2px;
+        height: 347.2px;
+      }
+      .cr-3 {
+        width: 459.2px;
+        height: 292px;
+      }
+      .cr-4 {
+        width: 459.2px;
+        height: 347.2px;
+      }
+
+      @media (max-width: 1000px) {
+        .cr-1,
+        .cr-2,
+        .cr-3,
+        .cr-4 {
+          width: 100%;
+          height: auto;
+          aspect-ratio: auto;
+        }
+        .cr-1 {
+          aspect-ratio: 459.2/402.4;
+        }
+        .cr-2,
+        .cr-4 {
+          aspect-ratio: 459.2/347.2;
+        }
+        .cr-3 {
+          aspect-ratio: 459.2/292;
+        }
+      }
+
+      .camera-roll-item:hover img {
+        transform: scale(1.02);
+      }
+
+      @media (max-width: 768px) {
+        .camera-roll-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+      }
+
+      /* Languages Styling */
+      .languages-section {
+        margin-top: 10rem;
+        margin-bottom: 10rem;
+      }
+
+      .languages-grid {
         display: grid;
-        grid-template-columns: 1.2fr 1fr;
-        gap: 6rem;
-        align-items: start;
-      }
-      
-      .bio-text {
-        font-size: 1.5rem;
-        line-height: 1.5;
-        opacity: 0.9;
-      }
-      
-      .skills-section h2 {
-        font-family: var(--font-serif);
-        font-size: 2rem;
-        margin-bottom: 2rem;
-      }
-      
-      .skills-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
       }
-      
-      .skill-item {
-        padding: 1.5rem;
+
+      .lang-card {
         background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        border-radius: 16px;
-        font-weight: 500;
-        transition: all 0.3s ease;
-      }
-      body.light-theme .skill-item {
-        background: rgba(0, 0, 0, 0.02);
-        border: 1px solid rgba(0, 0, 0, 0.05);
-      }
-      .skill-item:hover {
-        background: rgba(162, 155, 254, 0.1);
-        border-color: #a29bfe;
-        transform: translateY(-5px);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 24px;
+        padding: 2.5rem 1.5rem;
+        text-align: center;
+        transition: var(--transition);
       }
 
-      .contact-footer {
-        margin-top: 8rem;
-        padding-top: 4rem;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      body.light-theme .lang-card {
+        background: #ffffff;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.03);
+      }
+
+      .lang-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--accent-color);
+      }
+
+      .lang-sticker {
+        width: 140px;
+        height: 140px;
+        margin: 0 auto 1rem;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .lang-sticker iframe {
+        pointer-events: none;
+      }
+
+      .lang-card h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-color);
+      }
+
+      .lang-card p {
+        font-size: 1rem;
+        opacity: 0.5;
+        color: var(--text-color);
+      }
+
+      @media (max-width: 900px) {
+        .languages-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+      }
+
+      /* Things I Love Styling */
+      .things-love-section {
+        margin-top: 6rem;
+        margin-bottom: 6rem;
+      }
+
+      .things-love-text {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: var(--text-color);
+        opacity: 0.5;
+        max-width: 850px;
+        font-weight: 400;
+      }
+
+      .things-love-text span {
+        display: block;
+        margin-top: 1.5rem;
+      }
+
+      /* Social Links Styling */
+      .social-links-section {
+        margin-top: 6rem;
+        margin-bottom: 6rem;
+      }
+
+      .social-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .social-link-item {
+        font-size: 1.2rem;
+        color: var(--text-color);
+        opacity: 0.5;
+        text-decoration: none;
+        transition: var(--transition);
+        width: fit-content;
+      }
+
+      .social-link-item:hover {
+        opacity: 0.9;
+        transform: translateX(8px);
+      }
+
+      /* Footer Styling */
+      .footer-cta-container {
+        min-height: calc(100vh - 24rem);
+        display: flex;
+        align-items: center;
+        margin-top: 4rem;
+      }
+
+      .back-home-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 120px;
+        background: linear-gradient(135deg, #f09271 0%, #b25844 100%);
+        border-radius: 24px;
+        text-decoration: none;
+        transition:
+          transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+          box-shadow 0.6s ease;
+        box-shadow: 0 20px 40px rgba(178, 88, 68, 0.15);
+      }
+
+      .back-home-bar:hover {
+        transform: scale(1.015);
+        box-shadow: 0 30px 60px rgba(178, 88, 68, 0.25);
+      }
+
+      .back-home-bar span {
+        color: #ffffff;
+        font-size: 1.6rem;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+      }
+
+      .footer-bottom {
+        padding: 3rem 0 2rem 0;
         text-align: center;
       }
-      body.light-theme .contact-footer {
-        border-top-color: rgba(0, 0, 0, 0.1);
-      }
-      .contact-link {
-        font-family: var(--font-serif);
-        font-size: clamp(2rem, 5vw, 3rem);
-        color: var(--text-color);
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-      .contact-link:hover { color: #a29bfe; }
 
-      @media (max-width: 850px) {
-        .about-content { grid-template-columns: 1fr; gap: 4rem; }
+      /* Fixed bottom copyright bar */
+      .fixed-footer {
+        text-align: center;
+        padding: 4rem 0;
+        border-top: 1px solid rgba(128, 128, 128, 0.1);
+        margin-top: 2rem;
       }
+
+      .copyright-text {
+        font-size: 1.15rem;
+        opacity: 0.35;
+        color: var(--text-color);
+        font-weight: 400;
+      }
+
+      /* Simple fade-in animation */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(32px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-section {
+        animation: fadeInUp 0.8s ease both;
+      }
+
+      .fade-section:nth-child(1) { animation-delay: 0.1s; }
+      .fade-section:nth-child(2) { animation-delay: 0.25s; }
+      .fade-section:nth-child(3) { animation-delay: 0.4s; }
+      .fade-section:nth-child(4) { animation-delay: 0.55s; }
+      .fade-section:nth-child(5) { animation-delay: 0.7s; }
+      .fade-section:nth-child(6) { animation-delay: 0.85s; }
+      .fade-section:nth-child(7) { animation-delay: 1s; }
+      .fade-section:nth-child(8) { animation-delay: 1.15s; }
+      .fade-section:nth-child(9) { animation-delay: 1.3s; }
     </style>
   </head>
   <body>
-    <div class="about-container">
-      <a href="index.html" class="back-nav">&larr; Back to Portfolio</a>
-      
-      <section class="about-hero">
-        <span class="about-tag">About Me</span>
-        <h1 class="about-title">Designing with Intention.</h1>
+    <div class="about-wrapper">
+      <main class="about-layout fade-section">
+        <div class="about-image-box">
+          <img src="images/about.png" alt="Priyanka Gunjal" />
+        </div>
+
+        <article class="about-text">
+          <h1 class="headline">Hey, I'm Priyanka.</h1>
+
+          <p class="bio-para">
+            I'm a designer that likes solving hard problems and navigating
+            through ambiguity.
+          </p>
+
+          <p class="bio-para">
+            Currently, I lead 0&rarr;1 design at Memmy. I'm also building Manila
+            Folder.
+          </p>
+
+          <p class="bio-para">
+            Previously, I've crafted web experiences for the global design
+            community at Kaikasen, led design at EvoLab, and designed the
+            internship platform for Kultivate Labs.
+          </p>
+        </article>
+      </main>
+
+      <section class="about-layout reverse fade-section">
+        <article class="about-text">
+          <div class="icon-box">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <p class="bio-para highlight">
+            Where I've lived has shaped me into the person that I am today.
+          </p>
+          <p class="bio-para">
+            Born in Seattle, I spent my early childhood in Germany, lived in
+            Kansas, and finally ended up in California — where I'm proud to call
+            Northern California home.
+          </p>
+          <p class="bio-para">
+            I also grew up visiting family in Manila, so I consider this home
+            too :)
+          </p>
+        </article>
+
+        <div class="about-image-box">
+          <img
+            src="images/childhood_image.JPG.jpeg"
+            alt="Priyanka's childhood"
+          />
+        </div>
       </section>
 
-      <div class="about-content">
-        <div class="bio-section">
-          <p class="bio-text">
-            I'm Priyanka Gunjal, a multidisciplinary designer based in Northern California. 
-            I believe that great design isn't just about how it looks, but how it feels and 
-            functions in the hands of the user. 
-            <br><br>
-            My approach blends mathematical precision with editorial elegance, ensuring that 
-            every pixel serves a purpose. Whether it's a marketing bootcamp or a personal 
-            memory hub, I strive to create digital experiences that resonate on a human level.
-          </p>
+      <section class="about-layout fade-section">
+        <div class="about-image-box">
+          <img src="images/light.jpeg" alt="Priyanka's interests" />
         </div>
 
-        <div class="skills-section">
-          <h2>Core Expertise</h2>
-          <div class="skills-grid">
-            <div class="skill-item">UI/UX Design</div>
-            <div class="skill-item">Visual Branding</div>
-            <div class="skill-item">GSAP Animation</div>
-            <div class="skill-item">Interaction Design</div>
-            <div class="skill-item">Product Strategy</div>
-            <div class="skill-item">Design Systems</div>
+        <article class="about-text">
+          <div class="icon-box">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+          </div>
+          <p class="bio-para highlight">
+            Beyond design, you can find me finding peace in nature, capturing
+            the world through my lens, and brewing the perfect cup of matcha.
+          </p>
+        </article>
+      </section>
+
+      <section class="about-layout reverse">
+        <article class="about-text">
+          <h2 class="headline">Let's stay in touch.</h2>
+          <p class="bio-para">
+            I'm always open to new opportunities, collaborations, or just a
+            friendly chat about design.
+          </p>
+          <a href="mailto:example@gmail.com" class="cta-link-btn"
+            >Get in touch &rarr;</a
+          >
+        </article>
+
+        <div class="giphy-box">
+          <div
+            style="
+              width: 100%;
+              height: 0;
+              padding-bottom: 100%;
+              position: relative;
+            "
+          >
+            <iframe
+              src="https://giphy.com/embed/l4pTo0Wo83yK5mVSE"
+              width="100%"
+              height="100%"
+              style="position: absolute"
+              frameborder="0"
+              class="giphy-embed"
+              allowfullscreen
+            ></iframe>
           </div>
         </div>
-      </div>
+      </section>
 
-      <footer class="contact-footer">
-        <p style="margin-bottom: 1rem; opacity: 0.5;">Interested in collaborating?</p>
-        <a href="mailto:example@gmail.com" class="contact-link">Let's build something together.</a>
+      <section class="side-projects-section">
+        <h2 class="side-projects-title">Side Projects</h2>
+
+        <div class="project-row">
+          <div class="project-info">
+            <a href="#" class="project-title-link"
+              >Imperial Shadows: US Colonialism and the Disruption of Pilipino
+              Identity, 1898-1946</a
+            >
+            <p class="project-summary">
+              Presented this paper at a research conference and just recently
+              published this piece! Also received an award for Best Research
+              Article in the research journal it's published in! Deeply personal
+              project for me... read it here :)
+            </p>
+          </div>
+          <div class="project-date">August 2025</div>
+        </div>
+
+        <div class="project-row">
+          <div class="project-info">
+            <a href="#" class="project-title-link"
+              >Prediction and Generativity in the Context of Design [working
+              paper 🫣]</a
+            >
+            <p class="project-summary">
+              Currently working on a paper exploring LLMs and their generative
+              capabilities to evaluate how they fare in design process that is
+              inherently messy and human (which I think is beautiful).
+              Originally, I wrote this paper for a capstone class and got an A
+              on it, so I was like "okay I should publish this."
+            </p>
+          </div>
+          <div class="project-date">Spring 2026</div>
+        </div>
+
+        <div class="project-row">
+          <div class="project-info">
+            <a href="#" class="project-title-link"
+              >The Slow Web Movement [curated archive]</a
+            >
+            <p class="project-summary">
+              A collection of articles, design principles, and digital gardens
+              that advocate for a more intentional and less addictive internet.
+              Exploring how we can build digital spaces that respect human
+              attention and promote digital well-being.
+            </p>
+          </div>
+          <div class="project-date">Winter 2025</div>
+        </div>
+      </section>
+
+      <section class="camera-roll-section">
+        <h2 class="camera-roll-title">Some things on my camera roll...</h2>
+
+        <div class="camera-roll-grid">
+          <!-- Column 1 Flow -->
+          <div class="camera-roll-item cr-1">
+            <img src="images/photo1.jpeg" alt="Camera roll 1" />
+          </div>
+          <div class="camera-roll-item cr-3">
+            <img src="images/photo3.jpeg" alt="Camera roll 3" />
+          </div>
+
+          <!-- Column 2 Flow -->
+          <div class="camera-roll-item cr-2">
+            <img src="images/photo2.jpeg" alt="Camera roll 2" />
+          </div>
+          <div class="camera-roll-item cr-4">
+            <img src="images/photo4.jpeg" alt="Camera roll 4" />
+          </div>
+        </div>
+      </section>
+
+      <section class="languages-section">
+        <h2 class="camera-roll-title">Languages</h2>
+
+        <div class="languages-grid">
+          <!-- English -->
+          <div class="lang-card">
+            <div class="lang-sticker">
+              <iframe
+                src="https://giphy.com/embed/JRnXIcDPENEnse5Yur"
+                width="140"
+                height="140"
+                style="border: none"
+                class="giphy-embed"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <h3>English</h3>
+            <p>Native Speaker</p>
+          </div>
+
+          <!-- Tagalog -->
+          <div class="lang-card">
+            <div class="lang-sticker">
+              <iframe
+                src="https://giphy.com/embed/dZY2f9rdoMrLkYhx85"
+                width="140"
+                height="140"
+                style="border: none"
+                class="giphy-embed"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <h3>Tagalog (Filipino)</h3>
+            <p>Conversational</p>
+          </div>
+
+          <!-- Japanese -->
+          <div class="lang-card">
+            <div class="lang-sticker">
+              <iframe
+                src="https://giphy.com/embed/JorvK51GcEqxZDQEF2"
+                width="140"
+                height="140"
+                style="border: none"
+                class="giphy-embed"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <h3>Japanese</h3>
+            <p>Enough to get around</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="things-love-section">
+        <h2 class="camera-roll-title">Things I love</h2>
+        <p class="things-love-text">
+          Miffy, my orange clock from Berlin, silver rings, Martinelli's apple
+          juice, taekwondo, rice, laughing at myself, Erdbere ice cream,
+          Cetaphil Gentle Skin Cleanser, Pimecrolimus Cream, The Ordinary
+          Moisturizing Cream, Biore UV SPF 50+ Sunscreen, Duolingo's social
+          media presence, Maison Margiela Lazy Sunday Morning, Pinterest, Daly
+          City's fresh air, and Milo (specifically the canned version).
+          <span>Oh yeah, friends and family too.</span>
+        </p>
+      </section>
+
+      <section class="social-links-section">
+        <h2 class="camera-roll-title">Where to find me</h2>
+        <div class="social-list">
+          <a href="mailto:example@gmail.com" class="social-link-item">Email</a>
+          <a href="#" class="social-link-item">LinkedIn</a>
+          <a href="#" class="social-link-item">Twitter</a>
+          <a href="#" class="social-link-item">Aren.a</a>
+          <a href="#" class="social-link-item">GitHub</a>
+        </div>
+      </section>
+
+      <footer class="footer-cta-container">
+        <a href="index.html" class="back-home-bar">
+          <span>back home</span>
+        </a>
       </footer>
     </div>
 
+    <div class="fixed-footer">
+      <p class="copyright-text">&copy; Priyanka Gunjal 2026</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script>
-      // Theme Sync
-      const savedTheme = localStorage.getItem('portfolio-theme');
-      if (savedTheme === 'light') {
-        document.body.classList.add('light-theme');
+      // Theme Synchronization only
+      const savedTheme = localStorage.getItem("portfolio-theme");
+      if (savedTheme === "light") {
+        document.body.classList.add("light-theme");
       }
     </script>
   </body>

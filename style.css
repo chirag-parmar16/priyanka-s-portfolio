@@ -1259,22 +1259,25 @@ body.light-theme .project-card {
 }
 
 body.light-theme .bt-header {
-  color: #1a1a1a;
-  background: rgba(255, 255, 255, 0.9);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  color: #ffffff;
+  background: transparent;
+  border: none;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 body.light-theme .bt-main-box {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  background: transparent;
+  border: none;
 }
 
 body.light-theme .bt-main-box h2 {
-  color: #1a1a1a;
+  color: #ffffff;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 }
 
 body.light-theme .bt-main-box p {
-  color: #666;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 body.light-theme .status-card {

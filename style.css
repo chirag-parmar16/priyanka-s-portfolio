@@ -1541,22 +1541,20 @@ body.light-theme .project-overlay {
 }
 
 /* ─────────────────────────────────────────────────────────
-   FLOATING NOTCH MENU OVERLAY (Rich Glassmorphic #fc6d00 Modal)
+   FLOATING NOTCH MENU OVERLAY (Full-Bleed Torn Paper Edge Strips)
    ───────────────────────────────────────────────────────── */
 .notch-menu-overlay {
   position: fixed;
-  top: 62px;
+  top: 55px;
   left: 50%;
   transform: translateX(-50%) translateY(-15px) scale(0.95);
   z-index: 10001;
-  width: min(90vw, 340px);
-  background: linear-gradient(145deg, #ff7810 0%, #fc6d00 50%, #e45800 100%);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  width: min(92vw, 420px);
+  background: linear-gradient(140deg, #ff7b15 0%, #fc6d00 50%, #e05500 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 26px;
-  padding: 1.2rem 1.1rem;
-  box-shadow: 0 24px 55px rgba(252, 109, 0, 0.45), 
-              0 12px 30px rgba(0, 0, 0, 0.35),
-              inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  padding: 1.6rem 0;
+  box-shadow: 0 28px 65px rgba(252, 109, 0, 0.55), 0 14px 35px rgba(0, 0, 0, 0.45);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
@@ -1566,16 +1564,10 @@ body.light-theme .project-overlay {
   overflow: hidden;
 }
 
-/* Subtle background radial sheen overlay */
-.notch-menu-overlay::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.18) 0%, transparent 50%);
-  pointer-events: none;
+body.light-theme .notch-menu-overlay {
+  background: linear-gradient(140deg, #ff7b15 0%, #fc6d00 50%, #e05500 100%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 28px 65px rgba(252, 109, 0, 0.45), 0 14px 35px rgba(0, 0, 0, 0.28);
 }
 
 .notch-menu-overlay.is-open {
@@ -1585,86 +1577,119 @@ body.light-theme .project-overlay {
   transform: translateX(-50%) translateY(0) scale(1);
 }
 
-.notch-menu-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 0.5rem 0.6rem 0.5rem;
-  margin-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  position: relative;
-  z-index: 1;
+/* Watermark backdrop inside menu */
+.menu-watermark-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+  z-index: 0;
 }
 
-.notch-menu-header span {
-  font-family: var(--font-sans);
-  font-size: 0.7rem;
+.menu-watermark-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  font-family: var(--font-serif);
+  font-size: 6rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
-  color: rgba(255, 255, 255, 0.88);
+  line-height: 0.9;
   text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1.8px rgba(255, 255, 255, 0.22);
+  white-space: nowrap;
+}
+
+.menu-watermark-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
 
 .notch-list-container {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.45rem;
   position: relative;
   z-index: 1;
+  width: 100%;
+  padding: 0;
 }
 
+/* Full-bleed torn paper link items touching left and right edges */
 .notch-list-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 1rem;
-  border-radius: 16px;
+  justify-content: center;
   text-decoration: none;
-  color: #ffffff;
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border-radius: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  pointer-events: auto;
+  position: relative;
+  z-index: 2;
 }
 
-.notch-list-item .item-left {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.notch-list-item .item-index {
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.6);
-  min-width: 18px;
-}
-
-.notch-list-item:hover {
-  background: rgba(255, 255, 255, 0.22);
-  border-color: rgba(255, 255, 255, 0.45);
-  transform: translateX(4px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
-
-.notch-list-item:hover .item-index {
-  color: #ffffff;
-}
-
-.notch-list-item .item-arrow-badge {
+.notch-list-item .paper-strip {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.14);
-  font-size: 0.9rem;
-  color: #ffffff;
-  transition: all 0.25s ease;
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(180deg, #ffffff 0%, #f6f3e8 100%);
+  color: #d65500;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.5rem;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+/* Organic irregular torn paper edge clip-path running 100% edge-to-edge */
+.notch-list-item:nth-child(4n+1) .paper-strip {
+  clip-path: polygon(
+    0% 3px, 3% 0px, 8% 4px, 14% 1px, 20% 5px, 27% 1px, 33% 4px, 40% 0px, 47% 5px, 54% 1px, 61% 4px, 68% 0px, 75% 5px, 82% 1px, 89% 4px, 95% 0px, 100% 3px,
+    100% calc(100% - 3px), 96% 100%, 90% calc(100% - 4px), 83% 100%, 76% calc(100% - 3px), 69% 100%, 62% calc(100% - 5px), 55% 100%, 48% calc(100% - 3px), 41% 100%, 34% calc(100% - 4px), 27% 100%, 20% calc(100% - 3px), 13% 100%, 6% calc(100% - 4px), 0% 100%
+  );
+}
+
+.notch-list-item:nth-child(4n+2) .paper-strip {
+  clip-path: polygon(
+    0% 1px, 4% 4px, 10% 0px, 16% 5px, 22% 1px, 29% 4px, 35% 0px, 42% 5px, 49% 1px, 56% 4px, 63% 0px, 70% 5px, 77% 1px, 84% 4px, 91% 0px, 97% 4px, 100% 1px,
+    100% 100%, 94% calc(100% - 4px), 87% 100%, 80% calc(100% - 3px), 73% 100%, 66% calc(100% - 5px), 59% 100%, 52% calc(100% - 3px), 45% 100%, 38% calc(100% - 4px), 31% 100%, 24% calc(100% - 3px), 17% 100%, 10% calc(100% - 4px), 0% calc(100% - 2px)
+  );
+}
+
+.notch-list-item:nth-child(4n+3) .paper-strip {
+  clip-path: polygon(
+    0% 4px, 6% 1px, 12% 5px, 18% 0px, 25% 4px, 31% 1px, 38% 5px, 44% 0px, 51% 4px, 57% 1px, 64% 5px, 71% 0px, 78% 4px, 85% 1px, 92% 5px, 98% 0px, 100% 4px,
+    100% calc(100% - 2px), 93% 100%, 86% calc(100% - 5px), 79% 100%, 72% calc(100% - 3px), 65% 100%, 58% calc(100% - 4px), 51% 100%, 44% calc(100% - 3px), 37% 100%, 30% calc(100% - 5px), 23% 100%, 16% calc(100% - 3px), 9% 100%, 0% calc(100% - 4px)
+  );
+}
+
+.notch-list-item:nth-child(4n+4) .paper-strip {
+  clip-path: polygon(
+    0% 2px, 5% 5px, 11% 0px, 17% 4px, 24% 1px, 30% 5px, 37% 0px, 43% 4px, 50% 1px, 57% 5px, 63% 0px, 70% 4px, 76% 1px, 83% 5px, 90% 0px, 96% 4px, 100% 2px,
+    100% calc(100% - 4px), 95% 100%, 88% calc(100% - 3px), 81% 100%, 74% calc(100% - 5px), 67% 100%, 60% calc(100% - 3px), 53% 100%, 46% calc(100% - 4px), 39% 100%, 32% calc(100% - 3px), 25% 100%, 18% calc(100% - 5px), 11% 100%, 0% calc(100% - 2px)
+  );
+}
+
+.notch-list-item:hover .paper-strip {
+  background: #ffffff;
+  color: #fc6d00;
 }
 
 .notch-list-item:hover .item-arrow-badge {

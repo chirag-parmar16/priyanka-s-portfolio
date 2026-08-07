@@ -1494,11 +1494,22 @@ body.light-theme .project-overlay {
 }
 
 .floating-notch-menu:hover {
-  transform: translateX(-50%) scale(1.04);
-  filter: drop-shadow(0 12px 28px rgba(252, 109, 0, 0.65));
+  transform: translateX(-50%);
+  filter: drop-shadow(0 10px 22px rgba(252, 109, 0, 0.65));
 }
 
-/* Morph Hamburger & MENU text into Cross (X) on active */
+/* Morph Hamburger & MENU text into Cross (X) on active - PERFECTLY CENTERED */
+.floating-notch-menu.is-active .notch-inner {
+  justify-content: center;
+}
+
+.floating-notch-menu.is-active .notch-hamburger {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+}
+
 .floating-notch-menu.is-active .notch-hamburger span:nth-child(1) {
   transform: translateY(6.25px) rotate(45deg);
 }
@@ -1514,10 +1525,12 @@ body.light-theme .project-overlay {
 
 .floating-notch-menu.is-active .notch-label {
   opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  pointer-events: none;
   max-width: 0;
   margin: 0;
-  transform: scale(0.6);
-  pointer-events: none;
+  transform: scale(0.5);
 }
 
 .notch-label {
@@ -1525,28 +1538,41 @@ body.light-theme .project-overlay {
 }
 
 /* ─────────────────────────────────────────────────────────
-   FLOATING NOTCH MENU OVERLAY (Independent Modal with Card Links)
+   FLOATING NOTCH MENU OVERLAY (Rich Glassmorphic #fc6d00 Modal)
    ───────────────────────────────────────────────────────── */
 .notch-menu-overlay {
   position: fixed;
-  top: 65px;
+  top: 62px;
   left: 50%;
   transform: translateX(-50%) translateY(-15px) scale(0.95);
   z-index: 10001;
-  width: min(92vw, 760px);
-  background: rgba(18, 18, 24, 0.94);
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
-  border: 1px solid rgba(252, 109, 0, 0.35);
-  border-radius: 28px;
-  padding: 1.8rem;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(252, 109, 0, 0.22);
+  width: min(90vw, 340px);
+  background: linear-gradient(145deg, #ff7810 0%, #fc6d00 50%, #e45800 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 26px;
+  padding: 1.2rem 1.1rem;
+  box-shadow: 0 24px 55px rgba(252, 109, 0, 0.45), 
+              0 12px 30px rgba(0, 0, 0, 0.35),
+              inset 0 1px 1px rgba(255, 255, 255, 0.4);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              visibility 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+/* Subtle background radial sheen overlay */
+.notch-menu-overlay::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.18) 0%, transparent 50%);
+  pointer-events: none;
 }
 
 .notch-menu-overlay.is-open {
@@ -1556,88 +1582,92 @@ body.light-theme .project-overlay {
   transform: translateX(-50%) translateY(0) scale(1);
 }
 
-.notch-modal-header {
+.notch-menu-header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.2rem;
-  padding-bottom: 0.8rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  justify-content: space-between;
+  padding: 0 0.5rem 0.6rem 0.5rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  position: relative;
+  z-index: 1;
 }
 
-.notch-modal-tag {
+.notch-menu-header span {
   font-family: var(--font-sans);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.2em;
-  color: #fc6d00;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.88);
   text-transform: uppercase;
 }
 
-.notch-modal-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 0.8rem;
+.notch-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+  z-index: 1;
 }
 
-.notch-menu-card {
+.notch-list-item {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem 1.2rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 18px;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-radius: 16px;
   text-decoration: none;
-  color: white;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.notch-menu-card:hover {
-  background: rgba(252, 109, 0, 0.14);
-  border-color: rgba(252, 109, 0, 0.5);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-
-.notch-menu-card .card-num {
+  color: #ffffff;
   font-family: var(--font-sans);
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #fc6d00;
-  opacity: 0.85;
-}
-
-.notch-menu-card .card-info h3 {
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
-  margin: 0 0 0.2rem 0;
-  color: white;
+  letter-spacing: 0.02em;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.notch-menu-card .card-info p {
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
+.notch-list-item .item-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.notch-list-item .item-index {
+  font-size: 0.75rem;
+  font-weight: 700;
   color: rgba(255, 255, 255, 0.6);
-  margin: 0;
+  min-width: 18px;
 }
 
-.notch-menu-card .card-arrow {
-  margin-left: auto;
-  color: #fc6d00;
-  font-size: 1.1rem;
-  transition: transform 0.3s ease;
-}
-
-.notch-menu-card:hover .card-arrow {
+.notch-list-item:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.45);
   transform: translateX(4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-@media (max-width: 640px) {
-  .notch-modal-grid {
-    grid-template-columns: 1fr;
-  }
+.notch-list-item:hover .item-index {
+  color: #ffffff;
+}
+
+.notch-list-item .item-arrow-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  font-size: 0.9rem;
+  color: #ffffff;
+  transition: all 0.25s ease;
+}
+
+.notch-list-item:hover .item-arrow-badge {
+  background: #ffffff;
+  color: #fc6d00;
+  transform: translateX(2px) scale(1.05);
 }
 
 

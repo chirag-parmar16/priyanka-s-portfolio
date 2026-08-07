@@ -1368,3 +1368,136 @@ body.light-theme .project-overlay {
   color: #1a1a1a;
   text-shadow: none;
 }
+
+/* ─────────────────────────────────────────────────────────
+   FULL SCREEN WINDOW FRAME (Orange Accent)
+   ───────────────────────────────────────────────────────── */
+.screen-frame,
+.screen-frame * {
+  pointer-events: none !important;
+}
+
+.screen-frame {
+  position: fixed;
+  inset: 0;
+  border: 8px solid #fc6d00;
+  z-index: 9999;
+  box-sizing: border-box;
+  box-shadow: inset 0 0 28px rgba(252, 109, 0, 0.55), inset 0 0 10px rgba(252, 109, 0, 0.75);
+}
+
+.frame-corner {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+}
+
+.corner-tl {
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle at 100% 100%, transparent 24px, #fc6d00 24.5px);
+}
+
+.corner-tr {
+  top: 0;
+  right: 0;
+  background: radial-gradient(circle at 0% 100%, transparent 24px, #fc6d00 24.5px);
+}
+
+.corner-bl {
+  bottom: 0;
+  left: 0;
+  background: radial-gradient(circle at 100% 0%, transparent 24px, #fc6d00 24.5px);
+}
+
+.corner-br {
+  bottom: 0;
+  right: 0;
+  background: radial-gradient(circle at 0% 0%, transparent 24px, #fc6d00 24.5px);
+}
+
+/* ─────────────────────────────────────────────────────────
+   FLOATING NOTCH MENU (iPhone Style Floating Pill Notch)
+   ───────────────────────────────────────────────────────── */
+.floating-notch-menu,
+.floating-notch-menu * {
+  pointer-events: auto !important;
+}
+
+.floating-notch-menu {
+  position: fixed;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  width: 240px;
+  height: 42px;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  filter: drop-shadow(0 8px 18px rgba(252, 109, 0, 0.45));
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.notch-bg-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.notch-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  height: 100%;
+  padding: 0 24px;
+  color: #ffffff;
+  position: relative;
+  z-index: 1;
+  margin-top: 2px;
+}
+
+.notch-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 20px;
+  height: 15px;
+}
+
+.notch-hamburger span {
+  display: block;
+  width: 100%;
+  height: 2.5px;
+  background-color: #ffffff;
+  border-radius: 3px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.notch-label {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #ffffff;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.floating-notch-menu:hover {
+  transform: translateX(-50%) scale(1.04);
+  filter: drop-shadow(0 12px 28px rgba(252, 109, 0, 0.65));
+}
+
+
+
+

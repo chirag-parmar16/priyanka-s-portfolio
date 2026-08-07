@@ -28,6 +28,39 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // ─────────────────────────────────────────────────────────
+    // Floating Notch Menu Toggle & Morph Animation Logic
+    // ─────────────────────────────────────────────────────────
+    const notchBtn = document.getElementById('floating-notch-menu');
+    const menuOverlay = document.getElementById('notch-menu-overlay');
+
+    if (notchBtn && menuOverlay) {
+        notchBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const isOpen = notchBtn.classList.toggle('is-active');
+            menuOverlay.classList.toggle('is-open', isOpen);
+            menuOverlay.setAttribute('aria-hidden', !isOpen);
+        });
+
+        // Close menu when clicking outside modal
+        document.addEventListener('click', (e) => {
+            if (notchBtn.classList.contains('is-active') && !menuOverlay.contains(e.target) && !notchBtn.contains(e.target)) {
+                notchBtn.classList.remove('is-active');
+                menuOverlay.classList.remove('is-open');
+                menuOverlay.setAttribute('aria-hidden', 'true');
+            }
+        });
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && notchBtn.classList.contains('is-active')) {
+                notchBtn.classList.remove('is-active');
+                menuOverlay.classList.remove('is-open');
+                menuOverlay.setAttribute('aria-hidden', 'true');
+            }
+        });
+    }
+
 
     // ─────────────────────────────────────────────────────────
     // 1. Audio Preloading & Hover Sounds

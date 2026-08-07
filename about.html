@@ -555,6 +555,79 @@
       </div>
     </div>
 
+    <!-- Floating Menu Overlay Modal (Cards from index.html) -->
+    <div class="notch-menu-overlay" id="notch-menu-overlay" aria-hidden="true">
+      <div class="notch-modal-header">
+        <span class="notch-modal-tag">EXPLORE PORTFOLIO</span>
+      </div>
+      <div class="notch-modal-grid">
+        <a href="index.html" class="notch-menu-card">
+          <span class="card-num">01</span>
+          <div class="card-info">
+            <h3>Home Grid</h3>
+            <p>Main Portfolio Dashboard</p>
+          </div>
+          <span class="card-arrow">&rarr;</span>
+        </a>
+        <a href="about.html" class="notch-menu-card">
+          <span class="card-num">02</span>
+          <div class="card-info">
+            <h3>About Me</h3>
+            <p>Background & Intentional Design</p>
+          </div>
+          <span class="card-arrow">&rarr;</span>
+        </a>
+        <a href="project.html?id=brownthought" class="notch-menu-card">
+          <span class="card-num">03</span>
+          <div class="card-info">
+            <h3>Brownthought Academy</h3>
+            <p>Marketing Bootcamp For Changemakers</p>
+          </div>
+          <span class="card-arrow">&rarr;</span>
+        </a>
+        <a href="project.html?id=petals" class="notch-menu-card">
+          <span class="card-num">04</span>
+          <div class="card-info">
+            <h3>Petals</h3>
+            <p>Digital Floral Experience</p>
+          </div>
+          <span class="card-arrow">&rarr;</span>
+        </a>
+        <a href="project.html?id=guppy" class="notch-menu-card">
+          <span class="card-num">05</span>
+          <div class="card-info">
+            <h3>Guppy</h3>
+            <p>Interactive Brand Design</p>
+          </div>
+          <span class="card-arrow">&rarr;</span>
+        </a>
+        <a href="project.html?id=birthdays" class="notch-menu-card">
+          <span class="card-num">06</span>
+          <div class="card-info">
+            <h3>Birthdays</h3>
+            <p>Personal Celebration Moments</p>
+          </div>
+          <span class="card-arrow">&rarr;</span>
+        </a>
+        <a href="resume/PriyankaGunjal.CV_.docx.pdf" target="_blank" class="notch-menu-card">
+          <span class="card-num">07</span>
+          <div class="card-info">
+            <h3>Resume / CV</h3>
+            <p>Download Professional Experience</p>
+          </div>
+          <span class="card-arrow">&rarr;</span>
+        </a>
+        <a href="mailto:example@gmail.com" class="notch-menu-card">
+          <span class="card-num">08</span>
+          <div class="card-info">
+            <h3>Contact</h3>
+            <p>Get in Touch with Priyanka</p>
+          </div>
+          <span class="card-arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+
     <div class="about-wrapper">
       <main class="about-layout fade-section">
         <div class="about-image-box">
@@ -857,9 +930,7 @@
     <script>
       // Theme Synchronization only
       const savedTheme = localStorage.getItem("portfolio-theme");
-      if (savedTheme === "light") {
-        document.body.classList.add("light-theme");
-      }
     </script>
+    <script src="script.js"></script>
   </body>
 </html>

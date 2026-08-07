@@ -1897,6 +1897,145 @@ body.light-theme .project-overlay {
   }
 }
 
+/* ─────────────────────────────────────────────────────────
+   SUBPAGE WATERMARK DESIGN SYSTEM (about.html & project.html)
+   ───────────────────────────────────────────────────────── */
+.subpage-watermark-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  user-select: none;
+}
+
+.watermark-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.8;
+}
+
+body.light-theme .watermark-grid-pattern {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+}
+
+.watermark-glow-1 {
+  position: absolute;
+  top: -10%;
+  left: 15%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 800px;
+  max-height: 800px;
+  background: radial-gradient(circle, rgba(252, 109, 0, 0.12) 0%, transparent 68%);
+  filter: blur(90px);
+  border-radius: 50%;
+  animation: watermarkPulse 16s infinite ease-in-out alternate;
+}
+
+.watermark-glow-2 {
+  position: absolute;
+  bottom: 5%;
+  right: -10%;
+  width: 50vw;
+  height: 50vw;
+  max-width: 700px;
+  max-height: 700px;
+  background: radial-gradient(circle, rgba(252, 109, 0, 0.09) 0%, transparent 70%);
+  filter: blur(100px);
+  border-radius: 50%;
+  animation: watermarkPulse 20s infinite ease-in-out alternate-reverse;
+}
+
+@keyframes watermarkPulse {
+  0% {
+    transform: scale(0.9) translateY(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.15) translateY(-30px);
+    opacity: 1;
+  }
+}
+
+.watermark-text-huge {
+  position: absolute;
+  font-family: var(--font-serif);
+  font-size: clamp(6.5rem, 15vw, 22rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.05);
+  transform: rotate(-6deg);
+  opacity: 0.85;
+}
+
+body.light-theme .watermark-text-huge {
+  -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.045);
+}
+
+.watermark-text-huge.top-text {
+  top: 6%;
+  left: -2%;
+}
+
+.watermark-text-huge.mid-text {
+  top: 42%;
+  right: -5%;
+}
+
+.watermark-text-huge.bottom-text {
+  bottom: 8%;
+  left: 2%;
+}
+
+.watermark-badge {
+  position: absolute;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.35rem 0.85rem;
+  border-radius: 40px;
+}
+
+body.light-theme .watermark-badge {
+  color: rgba(0, 0, 0, 0.18);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.watermark-badge.pos-tl {
+  top: 18rem;
+  left: 3rem;
+}
+
+.watermark-badge.pos-tr {
+  top: 14rem;
+  right: 3rem;
+}
+
+.watermark-badge.pos-br {
+  bottom: 8rem;
+  right: 3rem;
+}
+
+@media (max-width: 768px) {
+  .watermark-text-huge {
+    font-size: clamp(4rem, 18vw, 9rem);
+  }
+  .watermark-badge {
+    display: none;
+  }
+}
+
 
 
 

@@ -16,16 +16,19 @@
         margin: 0 auto;
         padding: 4rem 2rem;
         min-height: 100vh;
+        position: relative;
+        z-index: 5;
       }
       .back-nav {
         margin-bottom: 3rem;
         display: inline-block;
         text-decoration: none;
         color: var(--text-color);
-        opacity: 0.6;
+        opacity: 0.75;
         transition: opacity 0.3s ease;
         font-family: var(--font-sans);
-        font-weight: 500;
+        font-weight: 600;
+        font-size: 0.95rem;
       }
       .back-nav:hover { opacity: 1; }
 
@@ -35,17 +38,23 @@
       }
       .project-category {
         text-transform: uppercase;
-        letter-spacing: 0.2em;
-        font-size: 0.9rem;
-        color: #a29bfe;
+        letter-spacing: 0.22em;
+        font-size: 0.95rem;
+        color: #fc6d00;
+        font-weight: 700;
         margin-bottom: 1rem;
         display: block;
+      }
+      body.light-theme .project-category {
+        color: #d65500;
       }
       .project-title {
         font-family: var(--font-serif);
         font-size: clamp(2.5rem, 8vw, 4.5rem);
         line-height: 1.1;
         margin-bottom: 2rem;
+        color: var(--text-color);
+        font-weight: 700;
       }
       .project-main-image {
         width: 100%;
@@ -54,6 +63,7 @@
         overflow: hidden;
         margin-bottom: 4rem;
         box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
       }
       .project-main-image img {
         width: 100%;
@@ -66,17 +76,28 @@
         gap: 4rem;
       }
       .project-meta h3 {
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         text-transform: uppercase;
-        opacity: 0.4;
+        letter-spacing: 0.15em;
+        color: #fc6d00;
+        font-weight: 700;
         margin-bottom: 0.5rem;
       }
-      .project-meta p { margin-bottom: 2rem; font-weight: 500; }
+      body.light-theme .project-meta h3 {
+        color: #d65500;
+      }
+      .project-meta p {
+        margin-bottom: 2rem;
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: var(--text-color);
+      }
 
       .project-description {
         font-size: 1.25rem;
-        line-height: 1.6;
-        opacity: 0.8;
+        line-height: 1.75;
+        color: var(--text-color);
+        opacity: 0.95;
       }
 
       @keyframes fadeIn {
@@ -97,6 +118,19 @@
       <div class="frame-corner corner-tr"></div>
       <div class="frame-corner corner-bl"></div>
       <div class="frame-corner corner-br"></div>
+    </div>
+
+    <!-- Subpage Watermark Backdrop -->
+    <div class="subpage-watermark-bg">
+      <div class="watermark-grid-pattern"></div>
+      <div class="watermark-glow-1"></div>
+      <div class="watermark-glow-2"></div>
+      <div class="watermark-text-huge top-text">Case Study</div>
+      <div class="watermark-text-huge mid-text">GTM Strategy</div>
+      <div class="watermark-text-huge bottom-text">Portfolio Archive</div>
+      <div class="watermark-badge pos-tl">[ PORTFOLIO ARCHIVE ]</div>
+      <div class="watermark-badge pos-tr">[ STRATEGIC ANALYSIS ]</div>
+      <div class="watermark-badge pos-br">[ EST. 2026 ]</div>
     </div>
 
     <!-- Floating Notch Menu -->
@@ -194,6 +228,13 @@
           title: "La FoxBox Client Acquisition",
           category: "B2B Commercial & Sales Strategy",
           image: "images/lafoxbox.jpeg",
+          watermark1: "LA FOXBOX",
+          watermark2: "€50K+ REVENUE",
+          watermark3: "B2B PIPELINE",
+          badge1: "[ BRUSSELS • BE ]",
+          badge2: "[ €50K+ REVENUE ]",
+          badge3: "[ 6+ DEALS CLOSED ]",
+          glow: "rgba(252, 109, 0, 0.16)",
           description: "Full-cycle sales and GTM acquisition execution for high-value commercial deals in Brussels.<br><br><b>The Challenge:</b> Scaling B2B market visibility, proposal conversion, and client pipeline retention in a competitive market.<br><br><b>The Solution:</b> Implemented a structured CRM sales funnel, tailored commercial & financial proposals, and executed Meta & TikTok lead generation campaigns.<br><br><b>The Results:</b> Closed 6+ high-value client deals in 3 months generating &euro;50K+ in revenue with recurring quarterly pipelines.",
           role: "Business Developer (La FoxBox)",
           year: "2025–Present",
@@ -203,6 +244,13 @@
           title: "Nutella Bakery GTM",
           category: "Global FMCG Brand Management",
           image: "images/nutellabakery.jpeg",
+          watermark1: "FERRERO HQ",
+          watermark2: "NUTELLA BAKERY",
+          watermark3: "EU & US GTM",
+          badge1: "[ LUXEMBOURG CITY ]",
+          badge2: "[ 3-YEAR ACTIVITY GRID ]",
+          badge3: "[ 200+ DAM ASSETS ]",
+          glow: "rgba(224, 88, 0, 0.18)",
           description: "Global GTM innovation pipeline and portfolio performance strategy for Nutella Fresh Bakery SKUs across EU and US markets at Ferrero HQ.<br><br><b>The Challenge:</b> Maximizing launch readiness and A&P budget ROI across 8+ international markets while maintaining 100% financial compliance.<br><br><b>The Solution:</b> Built PowerBI and Nielsen sell-in/sell-out dashboards, executed market test timelines, and streamlined 200+ DAM e-commerce assets.<br><br><b>The Results:</b> Delivered CEO-level strategic growth recommendations and maintained 100% financial accuracy across multi-million FMCG budgets.",
           role: "Junior Brand Manager Trainee (Ferrero)",
           year: "2024–2025",
@@ -212,6 +260,13 @@
           title: "Schwarzkopf 360 Campaigns",
           category: "FMCG Brand Portfolio Strategy",
           image: "images/schwarzkopf.jpeg",
+          watermark1: "HENKEL HQ",
+          watermark2: "SCHWARZKOPF",
+          watermark3: "1M+ CONSUMERS",
+          badge1: "[ BRUSSELS • BELGIUM ]",
+          badge2: "[ 1M+ CONSUMER REACH ]",
+          badge3: "[ NIELSENIQ & GFK ]",
+          glow: "rgba(162, 155, 254, 0.18)",
           description: "Data-driven media optimization and category trend strategy for 3 global FMCG haircare brands at Henkel HQ.<br><br><b>The Challenge:</b> Optimizing digital media ROI and audience messaging across a 20+ SKU portfolio.<br><br><b>The Solution:</b> Developed advanced NielsenIQ & GfK elasticity dashboards, optimized Meta Ads & Google Analytics pacing, and directed influencer copywriting.<br><br><b>The Results:</b> Reached 1M+ global consumers with record campaign engagement and optimized media ROI.",
           role: "Assistant Brand Manager Intern (Henkel)",
           year: "2024",
@@ -221,6 +276,13 @@
           title: "Global Colliance",
           category: "360° Growth & Brand Marketing",
           image: "images/globalcolliance.jpeg",
+          watermark1: "GLOBAL COLLIANCE",
+          watermark2: "35% GROWTH",
+          watermark3: "400K+ VIEWS",
+          badge1: "[ BARODA • INDIA ]",
+          badge2: "[ 35% BUSINESS GROWTH ]",
+          badge3: "[ 7-PERSON TEAM LEAD ]",
+          glow: "rgba(46, 204, 113, 0.16)",
           description: "Architected full-funnel B2B and B2C marketing strategies spanning social media, events, and sponsorships.<br><br><b>The Challenge:</b> Building brand awareness and driving demand creation in a competitive market space.<br><br><b>The Solution:</b> Developed audience-centric content strategies, led a team of 7, and executed Meta Ads & influencer campaigns.<br><br><b>The Results:</b> Accelerated business growth by 35% and generated 400K+ organic and paid views.",
           role: "360 Marketing Manager (Global Colliance)",
           year: "2021–2022",
@@ -235,6 +297,24 @@
 
         if (project) {
           document.title = `${project.title} | Priyanka Gunjal`;
+          
+          // Update Dynamic Watermark Backdrop Elements
+          const topText = document.querySelector('.watermark-text-huge.top-text');
+          const midText = document.querySelector('.watermark-text-huge.mid-text');
+          const bottomText = document.querySelector('.watermark-text-huge.bottom-text');
+          const badgeTl = document.querySelector('.watermark-badge.pos-tl');
+          const badgeTr = document.querySelector('.watermark-badge.pos-tr');
+          const badgeBr = document.querySelector('.watermark-badge.pos-br');
+          const glow1 = document.querySelector('.watermark-glow-1');
+
+          if (topText) topText.textContent = project.watermark1;
+          if (midText) midText.textContent = project.watermark2;
+          if (bottomText) bottomText.textContent = project.watermark3;
+          if (badgeTl) badgeTl.textContent = project.badge1;
+          if (badgeTr) badgeTr.textContent = project.badge2;
+          if (badgeBr) badgeBr.textContent = project.badge3;
+          if (glow1) glow1.style.background = `radial-gradient(circle, ${project.glow} 0%, transparent 68%)`;
+
           const container = document.getElementById('project-content');
           container.innerHTML = `
             <div class="project-hero">
